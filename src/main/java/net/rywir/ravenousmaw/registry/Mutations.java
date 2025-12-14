@@ -61,6 +61,16 @@ public enum Mutations {
         return ability;
     }
 
+    public static Set<String> getDisplayNames() {
+        Set<String> pseudo = new HashSet<>();
+
+        for (var val : values()) {
+            pseudo.add(val.getDisplayName());
+        }
+
+        return pseudo;
+    }
+
     public static Set<Mutations> getOnCraftTypeMembers() {
         return ON_CRAFT_TYPE_MEMBERS;
     }

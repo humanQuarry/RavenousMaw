@@ -14,7 +14,7 @@ import net.rywir.ravenousmaw.registry.Mutations;
 import net.rywir.ravenousmaw.registry.Stages;
 import net.rywir.ravenousmaw.system.MutationHandler;
 import net.rywir.ravenousmaw.system.interfaces.IMutationAbility;
-import net.rywir.ravenousmaw.util.Constants;
+import net.rywir.ravenousmaw.util.Configs;
 
 public class InsatiableVoracity implements IMutationAbility {
     // Look into RavenousLivingDeathEvent to see configuration
@@ -27,9 +27,9 @@ public class InsatiableVoracity implements IMutationAbility {
         }
 
         float multiplier = switch (stage) {
-            case Stages.ADVANCED -> Constants.INSATIABLE_VORACITY_ADVANCED_DAMAGE_MULTIPLIER;
-            case Stages.NOBLE -> Constants.INSATIABLE_VORACITY_NOBLE_DAMAGE_MULTIPLIER;
-            case Stages.EXCELSIOR -> Constants.INSATIABLE_VORACITY_EXCELSIOR_DAMAGE_MULTIPLIER;
+            case Stages.ADVANCED -> ((float) Configs.INSATIABLE_VORACITY_ADVANCED_DAMAGE_MULTIPLIER.getAsDouble());
+            case Stages.NOBLE -> ((float) Configs.INSATIABLE_VORACITY_NOBLE_DAMAGE_MULTIPLIER.getAsDouble());
+            case Stages.EXCELSIOR -> ((float) Configs.INSATIABLE_VORACITY_EXCELSIOR_DAMAGE_MULTIPLIER.getAsDouble());
             default -> 0.0F;
         };
 

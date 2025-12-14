@@ -52,6 +52,10 @@ public class MutationRecipe implements Recipe<MutationRecipeInput> {
             return false;
         }
 
+        boolean isMutatable = target.getAbility().isMutatable(input.base(), level);
+
+        if (!isMutatable) return false;
+
         return true;
     }
 

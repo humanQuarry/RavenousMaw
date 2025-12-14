@@ -52,6 +52,30 @@ public class MutationHandler {
         stack.set(DataComponentTypes.MUTATION_COMPONENT_TYPE, new MutationComponent(ImmutableMap.copyOf(pseudo)));
     }
 
+    public void addWithCraft(Mutations mutation) {
+        if(has(mutation)) {
+            return;
+        }
+
+        Map<String, Integer> pseudo = new HashMap<>(immutableMap);
+        pseudo.put(mutation.getKey(), DEFAULT_VALUE);
+        stack.set(DataComponentTypes.MUTATION_COMPONENT_TYPE, new MutationComponent(ImmutableMap.copyOf(pseudo)));
+
+        mutation.getAbility().onCraft(stack);
+    }
+
+    public void remove(Mutations mutation) {
+        if (!has(mutation)) {
+            return;
+        }
+
+        Map<String, Integer> pseudo = new HashMap<>(immutableMap);
+        pseudo.remove(mutation.getKey());
+        stack.set(DataComponentTypes.MUTATION_COMPONENT_TYPE, new MutationComponent(ImmutableMap.copyOf(pseudo)));
+
+        mutation.getAbility().decraft(stack);
+    }
+
     public void configure(Mutations mutation, int value) {
         if(!has(mutation)) {
             return;

@@ -9,7 +9,7 @@
       "item": {
         "item": "minecraft:nether_star"
       },
-      "text": "Adaptive Shift allows Ravenous Maw to switch between Silk Touch & Fortune III (even if you don't have them before the mutation). Additionally, it can disable mob drops to multiply its damage."
+      "text": "Adaptive Shift allows Ravenous Maw to switch between Silk Touch & Fortune III (even if you don't have them before the mutation). Additionally, it can disable mob drops to multiply its damage. It requires maxed out Fortune or Silk Touch."
     },
     {
       "type": "patchouli:spotlight",

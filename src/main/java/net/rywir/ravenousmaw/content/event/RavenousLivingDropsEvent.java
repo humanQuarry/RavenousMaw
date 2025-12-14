@@ -45,7 +45,6 @@ public class RavenousLivingDropsEvent {
         if (hasAdaptiveShift) {
             AdaptiveShiftHandler adaptiveShiftHandler = new AdaptiveShiftHandler(stack);
             boolean isLootAllowed = adaptiveShiftHandler.getConfigBool(Mutations.Parameters.LOOT);
-            RavenousMaw.LOGGER.debug("isLootAllowed: {}", isLootAllowed);
 
             if (!isLootAllowed) {
                 event.getDrops().clear();

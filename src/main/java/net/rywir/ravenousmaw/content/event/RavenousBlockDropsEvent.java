@@ -76,7 +76,6 @@ public class RavenousBlockDropsEvent {
                 drop.getItem().copy()
             );
             level.addFreshEntity(duplicate);
-            RavenousMaw.LOGGER.debug("duped");
         }
     }
 }

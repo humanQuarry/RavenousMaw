@@ -17,6 +17,7 @@ import net.rywir.ravenousmaw.registry.RavenousRecipes;
 import net.rywir.ravenousmaw.registry.Stages;
 import net.rywir.ravenousmaw.system.MutationHandler;
 import net.rywir.ravenousmaw.system.StageHandler;
+import net.rywir.ravenousmaw.util.Configs;
 import net.rywir.ravenousmaw.util.Constants;
 
 import java.util.LinkedHashMap;
@@ -28,7 +29,7 @@ public class FeedingRecipe extends CustomRecipe {
     // For better ordering
     public static final Map<Stages, Map<ItemLike, Integer>> REPAIR_MAP = Map.of(
         Stages.LATENT, Stream.of(
-            Map.entry(Items.ROTTEN_FLESH.asItem(), Constants.LATENT_ROTTEN_FLESH)
+            Map.entry(Items.ROTTEN_FLESH.asItem(), Configs.LATENT_ROTTEN_FLESH.getAsInt())
         ).collect(Collectors.toMap(
             Map.Entry::getKey,
             Map.Entry::getValue,
@@ -37,25 +38,25 @@ public class FeedingRecipe extends CustomRecipe {
         )),
 
         Stages.ADVANCED, Stream.of(
-            Map.entry(RavenousItems.PIGLIN_PIE.asItem(), Constants.ADVANCED_PIGLIN_PIE),
-            Map.entry(Items.ROTTEN_FLESH.asItem(), Constants.ADVANCED_ROTTEN_FLESH)
+            Map.entry(RavenousItems.PIGLIN_PIE.asItem(), Configs.ADVANCED_PIGLIN_PIE.getAsInt()),
+            Map.entry(Items.ROTTEN_FLESH.asItem(), Configs.ADVANCED_ROTTEN_FLESH.getAsInt())
         ).collect(Collectors.toMap(
             Map.Entry::getKey, Map.Entry::getValue, (oldVal, newVal) -> oldVal, LinkedHashMap::new
         )),
 
         Stages.NOBLE, Stream.of(
-            Map.entry(RavenousItems.CHORUS_CRACKER.asItem(), Constants.NOBLE_CHORUS_CRACKER),
-            Map.entry(RavenousItems.PIGLIN_PIE.asItem(), Constants.NOBLE_PIGLIN_PIE),
-            Map.entry(Items.ROTTEN_FLESH.asItem(), Constants.NOBLE_ROTTEN_FLESH)
+            Map.entry(RavenousItems.CHORUS_CRACKER.asItem(), Configs.NOBLE_CHORUS_CRACKER.getAsInt()),
+            Map.entry(RavenousItems.PIGLIN_PIE.asItem(), Configs.NOBLE_PIGLIN_PIE.getAsInt()),
+            Map.entry(Items.ROTTEN_FLESH.asItem(), Configs.NOBLE_ROTTEN_FLESH.getAsInt())
         ).collect(Collectors.toMap(
             Map.Entry::getKey, Map.Entry::getValue, (oldVal, newVal) -> oldVal, LinkedHashMap::new
         )),
 
         Stages.EXCELSIOR, Stream.of(
-            Map.entry(RavenousItems.SCULK_CRONUT.asItem(), Constants.EXCELSIOR_SCULK_CRONUT),
-            Map.entry(RavenousItems.CHORUS_CRACKER.asItem(), Constants.EXCELSIOR_CHORUS_CRACKER),
-            Map.entry(RavenousItems.PIGLIN_PIE.asItem(), Constants.EXCELSIOR_PIGLIN_PIE),
-            Map.entry(Items.ROTTEN_FLESH.asItem(), Constants.EXCELSIOR_ROTTEN_FLESH)
+            Map.entry(RavenousItems.SCULK_CRONUT.asItem(), Configs.EXCELSIOR_SCULK_CRONUT.getAsInt()),
+            Map.entry(RavenousItems.CHORUS_CRACKER.asItem(), Configs.EXCELSIOR_CHORUS_CRACKER.getAsInt()),
+            Map.entry(RavenousItems.PIGLIN_PIE.asItem(), Configs.EXCELSIOR_PIGLIN_PIE.getAsInt()),
+            Map.entry(Items.ROTTEN_FLESH.asItem(), Configs.EXCELSIOR_ROTTEN_FLESH.getAsInt())
         ).collect(Collectors.toMap(
             Map.Entry::getKey, Map.Entry::getValue, (oldVal, newVal) -> oldVal, LinkedHashMap::new
         ))

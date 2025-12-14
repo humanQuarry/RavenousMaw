@@ -43,6 +43,11 @@ public class AdaptiveShift implements IMutationAbility {
     }
 
     @Override
+    public void decraft(ItemStack stack) {
+        stack.remove(DataComponentTypes.ADAPTIVE_SHIFT_COMPONENT_TYPE);
+    }
+
+    @Override
     public void onUpdate(ItemStack stack, Level level) {
         MutationHandler mutationHandler = new MutationHandler(stack);
         boolean hasShift = mutationHandler.has(Mutations.ADAPTIVE_SHIFT);
@@ -64,5 +69,12 @@ public class AdaptiveShift implements IMutationAbility {
             enchantmentHandler.without(Enchantments.SILK_TOUCH, level);
             enchantmentHandler.with(Enchantments.FORTUNE, 3, level);
         }
+    }
+
+    @Override
+    public boolean isMutatable(ItemStack stack, Level level) {
+        EnchantmentHandler handler = new EnchantmentHandler(stack);
+
+        return handler.hasMaxedOut(Enchantments.FORTUNE, level) || handler.hasMaxedOut(Enchantments.SILK_TOUCH, level);
     }
 }

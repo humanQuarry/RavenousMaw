@@ -21,4 +21,8 @@ public interface IMutationAbility {
     default void onInstability(MutationHandler mutationHandler, ItemStack stack, Player player) {}
 
     default void onUpdate(ItemStack stack, Level level) {}
+
+    default void decraft(ItemStack stack) {}
+
+    default boolean isMutatable(ItemStack stack, Level level) { return true; }
 }

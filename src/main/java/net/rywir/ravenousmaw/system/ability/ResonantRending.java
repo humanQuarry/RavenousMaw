@@ -7,6 +7,7 @@ import net.rywir.ravenousmaw.registry.Mutations;
 import net.rywir.ravenousmaw.registry.Stages;
 import net.rywir.ravenousmaw.system.MutationHandler;
 import net.rywir.ravenousmaw.system.interfaces.IMutationAbility;
+import net.rywir.ravenousmaw.util.Configs;
 import net.rywir.ravenousmaw.util.Constants;
 
 public class ResonantRending implements IMutationAbility {
@@ -20,6 +21,6 @@ public class ResonantRending implements IMutationAbility {
 
         float maxHealth = target.getMaxHealth();
 
-        return maxHealth * Constants.RESONANT_RENDING_PERCENTAGE;
+        return maxHealth * ((float) Configs.RESONANT_RENDING_PERCENTAGE.getAsDouble());
     }
 }

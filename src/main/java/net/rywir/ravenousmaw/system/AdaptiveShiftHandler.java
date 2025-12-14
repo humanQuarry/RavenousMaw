@@ -39,6 +39,5 @@ public class AdaptiveShiftHandler {
         ImmutableMap<String, Boolean> newMap = ImmutableMap.copyOf(pseudo);
         AdaptiveShiftComponent component = new AdaptiveShiftComponent(newMap);
         stack.set(DataComponentTypes.ADAPTIVE_SHIFT_COMPONENT_TYPE, component);
-        RavenousMaw.LOGGER.debug("Updated parameter {} to {} from {}", parameter.name(), newVal, exVal);
     }
 }

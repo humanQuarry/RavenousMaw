@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.Unbreakable;
 import net.minecraft.world.level.Level;
 import net.rywir.ravenousmaw.registry.Mutations;
+import net.rywir.ravenousmaw.system.EnchantmentHandler;
 import net.rywir.ravenousmaw.system.MutationHandler;
 import net.rywir.ravenousmaw.system.interfaces.IMutationAbility;
 
@@ -27,6 +28,11 @@ public class UndyingFlesh implements IMutationAbility {
         }
 
         stack.set(DataComponents.UNBREAKABLE, new Unbreakable(true));
+    }
+
+    @Override
+    public void decraft(ItemStack stack) {
+        stack.set(DataComponents.UNBREAKABLE, new Unbreakable(false));
     }
 
     @Override

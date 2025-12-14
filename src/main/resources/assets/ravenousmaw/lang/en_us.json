@@ -61,5 +61,12 @@
   "stage.ravenousmaw.noble": "Noble",
   "stage.ravenousmaw.excelsior": "Excelsior",
 
-  "jei.ravenousmaw.feeding": "Maw Feeding"
+  "jei.ravenousmaw.feeding": "Maw Feeding",
+
+  "warning.ravenousmaw.no_maw": "The item in main hand is not a maw!",
+
+  "dialogue.ravenousmaw.latent": "RmVlZCBtZSBtb3J0YWwh",
+  "dialogue.ravenousmaw.advanced": "From a builder, teach bWF3 speak-hows!",
+  "dialogue.ravenousmaw.noble": "I have finally become able to communicate with you.",
+  "dialogue.ravenousmaw.excelsior": "When will you gonna feed me?"
 }

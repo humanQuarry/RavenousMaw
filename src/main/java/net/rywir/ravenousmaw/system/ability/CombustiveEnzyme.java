@@ -2,6 +2,7 @@ package net.rywir.ravenousmaw.system.ability;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -17,11 +18,14 @@ import net.rywir.ravenousmaw.registry.Stages;
 import net.rywir.ravenousmaw.system.MutationHandler;
 import net.rywir.ravenousmaw.system.StageHandler;
 import net.rywir.ravenousmaw.system.interfaces.IMutationAbility;
+import net.rywir.ravenousmaw.util.Configs;
 import net.rywir.ravenousmaw.util.Constants;
 
 public class CombustiveEnzyme implements IMutationAbility {
     @Override
     public void onAttack(ItemStack stack, LivingEntity target, Level level) {
+        if (level.isClientSide()) return;
+
         MutationHandler handler = new MutationHandler(stack);
 
         if (!handler.has(Mutations.COMBUSTIVE_ENZYME)) {
@@ -38,7 +42,6 @@ public class CombustiveEnzyme implements IMutationAbility {
             target.removeEffect(RavenousMobEffects.COMBUSTIVE);
             ((ServerLevel) level).sendParticles(ParticleTypes.ELECTRIC_SPARK, target.getX(), target.getY() + 0.5, target.getZ(), 8, 0.2, 0.2, 0.2, 0.02);
         }
-
     }
 
     @Override
@@ -57,9 +60,9 @@ public class CombustiveEnzyme implements IMutationAbility {
         }
 
         float bonus = switch (stage) {
-            case Stages.ADVANCED -> Constants.COMBUSTIVE_ENZYME_ADVANCED_DAMAGE_BONUS;
-            case Stages.NOBLE -> Constants.COMBUSTIVE_ENZYME_NOBLE_DAMAGE_BONUS;
-            case Stages.EXCELSIOR -> Constants.COMBUSTIVE_ENZYME_EXCELSIOR_DAMAGE_BONUS;
+            case Stages.ADVANCED -> ((float) Configs.COMBUSTIVE_ENZYME_ADVANCED_DAMAGE_BONUS.getAsDouble());
+            case Stages.NOBLE -> ((float) Configs.COMBUSTIVE_ENZYME_NOBLE_DAMAGE_BONUS.getAsDouble());
+            case Stages.EXCELSIOR -> ((float) Configs.COMBUSTIVE_ENZYME_EXCELSIOR_DAMAGE_BONUS.getAsDouble());
             default -> 0.0F;
         };
 

@@ -1,9 +1,11 @@
 package net.rywir.ravenousmaw;
 
 import net.neoforged.bus.api.Event;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RenderHighlightEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
@@ -18,6 +20,7 @@ import net.rywir.ravenousmaw.content.gui.menu.ConfigurationMenu;
 import net.rywir.ravenousmaw.content.gui.screen.ConfigurationScreen;
 import net.rywir.ravenousmaw.content.gui.screen.MutationMatrixScreen;
 import net.rywir.ravenousmaw.registry.*;
+import net.rywir.ravenousmaw.util.Configs;
 import net.rywir.ravenousmaw.util.HelperData;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -55,6 +58,7 @@ public class RavenousMaw {
         NeoForge.EVENT_BUS.addListener(BlockEvent.BreakEvent.class, RavenousBreakEvent::onBreakEvent);
         NeoForge.EVENT_BUS.addListener(MovementInputUpdateEvent.class, RavenousMovementInputUpdateEvent::onMovementInputUpdateEvent);
         NeoForge.EVENT_BUS.addListener(RenderHighlightEvent.Block.class, RavenousRenderHighlightEvent::onRenderHighlightEvent);
+        NeoForge.EVENT_BUS.addListener(RegisterCommandsEvent.class, RavenousRegisterCommandsEvent::onRegisterCommandsEvent);
 
         modEventBus.addListener(RegisterPayloadHandlersEvent.class, RavenousRegisterPayloadHandlersEvent::onRegisterPayloadHandlersEvent);
 
@@ -77,6 +81,9 @@ public class RavenousMaw {
         RavenousMobEffects.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
+
+        // CONFIG REGISTRATION
+        modContainer.registerConfig(ModConfig.Type.COMMON, Configs.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {}

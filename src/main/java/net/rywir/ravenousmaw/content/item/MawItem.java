@@ -1,5 +1,6 @@
 package net.rywir.ravenousmaw.content.item;
 
+import com.google.common.collect.BoundType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.gui.screens.Screen;
@@ -122,7 +123,6 @@ public class MawItem extends Item {
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         AbilityDispatcher dispatcher = new AbilityDispatcher();
         dispatcher.onAttack(stack, target, target.level());
-        stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
         return true;
     }
 
@@ -143,11 +143,11 @@ public class MawItem extends Item {
         ItemStack stack = damageSource.getWeaponItem();
 
         StageHandler handler = new StageHandler(stack);
-        AbilityDispatcher dispatcher = new AbilityDispatcher();
-        MutationHandler mutationHandler = new MutationHandler(stack);
-        
         Stages stage = handler.getStage();
 
+        MutationHandler mutationHandler = new MutationHandler(stack);
+
+        AbilityDispatcher dispatcher = new AbilityDispatcher();
         float bonusDamage = dispatcher.getAttackDamageBonus(mutationHandler, stack, (LivingEntity) target, level, stage);
 
         return bonusDamage;
@@ -183,8 +183,9 @@ public class MawItem extends Item {
         return canSurviveUsage(player.getItemInHand(InteractionHand.MAIN_HAND), level, player, () -> super.canAttackBlock(state, level, pos, player), false);
     }
 
-    private int instabilityCounter = 0;
+    private int tickCounter = 0;
     private final int MAX_COUNT = 20040; // 17 min.
+    private final int DIALOGUE_FREQUENCY = 9600;
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
@@ -192,9 +193,17 @@ public class MawItem extends Item {
             return;
         }
 
-        instabilityCounter = instabilityCounter + 1;
+        tickCounter = tickCounter + 1;
 
-        if (instabilityCounter >= MAX_COUNT) {
+        if (tickCounter % DIALOGUE_FREQUENCY == 0) {
+            StageHandler handler = new StageHandler(stack);
+            Stages stage = handler.getStage();
+
+            String dialogue = generateDialogue(stage);
+            player.displayClientMessage(Component.literal(dialogue), true);
+        }
+
+        if (tickCounter >= MAX_COUNT) {
             StageHandler stageHandler = new StageHandler(stack);
             Stages stage = stageHandler.getStage();
 
@@ -212,7 +221,7 @@ public class MawItem extends Item {
             List<Mutations> muts = new ArrayList<>(handler.matchMutations());
 
             if (muts.isEmpty()) {
-                instabilityCounter = 0;
+                tickCounter = 0;
                 return;
             }
 
@@ -220,7 +229,7 @@ public class MawItem extends Item {
             int index = random.nextInt(muts.size());
 
             muts.get(index).getAbility().onInstability(handler, stack, player);
-            instabilityCounter = 0;
+            tickCounter = 0;
         }
     }
 
@@ -253,6 +262,17 @@ public class MawItem extends Item {
             || ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(itemAbility)
             || ItemAbilities.DEFAULT_SHOVEL_ACTIONS.contains(itemAbility)
             || ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(itemAbility);
+    }
+
+    // todo: add more dialogues in future
+    public String generateDialogue(Stages stage) {
+        return switch (stage) {
+            case LATENT -> Component.translatable("dialogue.ravenousmaw.latent").getString();
+            case ADVANCED -> Component.translatable("dialogue.ravenousmaw.advanced").getString();
+            case NOBLE -> Component.translatable("dialogue.ravenousmaw.noble").getString();
+            case EXCELSIOR -> Component.translatable("dialogue.ravenousmaw.excelsior").getString();
+            default -> " ";
+        };
     }
 
     private void callMenu(ServerPlayer serverPlayer, Player player, ItemStack stack) {

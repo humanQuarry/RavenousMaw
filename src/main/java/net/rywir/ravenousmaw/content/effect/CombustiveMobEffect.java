@@ -38,8 +38,8 @@ public class CombustiveMobEffect extends MobEffect {
                 false,
                 Level.ExplosionInteraction.NONE
             );
-        }
 
-        target.removeEffect(RavenousMobEffects.COMBUSTIVE);
+            target.removeEffect(RavenousMobEffects.COMBUSTIVE);
+        }
     }
 }
