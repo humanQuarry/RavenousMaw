@@ -1,0 +1,22 @@
+{
+  "name": "Latent",
+  "icon": "ravenousmaw:ravenous_maw_latent",
+  "category": "ravenousmaw:stages",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:ravenous_maw_latent"
+      },
+      "text": "Latent Stage is the Maw in its most primal, dormant form. As the initial stage of its existence, the beast’s true power remains coiled and hidden, waiting for the first drop of blood to spark its long and terrible evolution."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:rotten_flesh"
+      },
+      "text": "This Stage's Feast is Rotten Flesh."
+    }
+  ]
+}

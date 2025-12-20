@@ -1,0 +1,25 @@
+{
+  "name": "Undying Flesh",
+  "icon": "minecraft:totem_of_undying",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:chorus_cracker"
+      },
+      "text": "The Undying Flesh mutation grants the Maw an eternal form. It completely arrests the process of decay, removing the constraint of durability and rendering the vessel truly unbreakable."    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:totem_of_undying"
+      },
+      "text": "Upon reaching the zenith of the Excelsior Stage, this invulnerability evolves further: the Maw becomes impervious to flame and lava, rivaling the legendary resilience of Netherite."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Instability (Fatigue): Immortality is not a shield against exhaustion. Even an eternal beast may grow weary of its constant labors. At times, the Maw will succumb to a deep, stubborn lethargy, refusing to respond to your commands until its spirit has rested."
+    }
+  ]
+}

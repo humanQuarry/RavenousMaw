@@ -1,0 +1,24 @@
+package net.rywir.ravenousmaw.registry;
+
+import net.minecraft.core.registries.Registries;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.attachment.AttachmentType;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.rywir.ravenousmaw.RavenousMaw;
+import net.rywir.ravenousmaw.content.attachment.MawTickData;
+
+public class RavenousAttachments {
+    public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, RavenousMaw.MOD_ID);
+
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<MawTickData>> MAW_TICK_DATA = ATTACHMENT_TYPES.register("maw_tick_data",
+        () -> AttachmentType.builder(() -> new MawTickData())
+            .serialize(MawTickData.CODEC)
+            .build()
+    );
+
+    public static void register(IEventBus eventBus) {
+        ATTACHMENT_TYPES.register(eventBus);
+    }
+}

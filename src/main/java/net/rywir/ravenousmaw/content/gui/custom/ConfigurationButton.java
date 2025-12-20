@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.PacketDistributor;
-import net.rywir.ravenousmaw.content.payload.ConfigurationPayload;
+import net.rywir.ravenousmaw.content.packet.payload.ConfigurationPayload;
 import net.rywir.ravenousmaw.util.dstruct.ConfigAction;
 
 public class ConfigurationButton extends Button {

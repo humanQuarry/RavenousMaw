@@ -3,15 +3,10 @@ package net.rywir.ravenousmaw.datagen.provider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.FireworkStarRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
-import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.rywir.ravenousmaw.RavenousMaw;
@@ -21,11 +16,9 @@ import net.rywir.ravenousmaw.content.recipe.matrix.MutationRecipeBuilder;
 import net.rywir.ravenousmaw.registry.Mutations;
 import net.rywir.ravenousmaw.registry.RavenousBlocks;
 import net.rywir.ravenousmaw.registry.RavenousItems;
-import net.rywir.ravenousmaw.registry.Stages;
 import net.rywir.ravenousmaw.util.HelperData;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class RavenousRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -53,7 +46,7 @@ public class RavenousRecipeProvider extends RecipeProvider implements ICondition
             .define('C', Items.CHORUS_FRUIT)
             .unlockedBy("has_chorus_fruit", has(Items.CHORUS_FRUIT)).save(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RavenousItems.SCULK_CRONUT.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RavenousItems.SCULK_CROISSANT.get())
             .pattern(" A ")
             .pattern("BCB")
             .pattern(" A ")
@@ -106,7 +99,7 @@ public class RavenousRecipeProvider extends RecipeProvider implements ICondition
                     continue;
                 }
 
-                if (!(mutation.stage().getId() <= ((MawItem) mawHolder.get()).getStage().getId())) {
+                if (!(mutation.stage().getId() <= HelperData.getStage(mawHolder).getId())) {
                     continue;
                 }
 

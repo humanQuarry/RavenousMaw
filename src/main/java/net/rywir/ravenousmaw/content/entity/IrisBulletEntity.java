@@ -200,7 +200,7 @@ public class IrisBulletEntity extends AbstractArrow {
         return best;
     }
 
-    private boolean hasLineOfSight(Vec3 from, LivingEntity target) {
+    private boolean hasLineOfSight(Vec3 from, @NotNull LivingEntity target) {
         Vec3[] points = {
             target.getEyePosition(),
             target.position().add(0, target.getBbHeight() * 0.5, 0),

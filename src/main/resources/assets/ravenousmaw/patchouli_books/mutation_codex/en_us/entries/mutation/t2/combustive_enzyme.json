@@ -1,0 +1,30 @@
+{
+  "name": "Combustive Enzyme",
+  "icon": "minecraft:magma_cream",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:piglin_pie"
+      },
+      "text": "The Combustive Enzyme causes the Maw to secrete a volatile compound. Upon the initial strike, the victim is coated in this primer, suffering the Combustive Effect."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:magma_cream"
+      },
+      "text": "A subsequent blow acts as the spark, instantly detonating the latent energy to deal massive additional damage increasing with each higher Stage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Instability (Arsonist): The Maw struggles to contain its own heat. Occasionally, it may dribble unstable secretions onto its master, coating you in the Combustive Effect."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "While tainted by this volatile primer, you become a living powder keg. Shun all contact with open fire, lest you ignite the catalyst and consume yourself in flame."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ravenousmaw:item/sculk_croissant"
+  }
+}

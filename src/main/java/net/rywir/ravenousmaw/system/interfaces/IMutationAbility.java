@@ -1,10 +1,13 @@
 package net.rywir.ravenousmaw.system.interfaces;
 
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.rywir.ravenousmaw.registry.Stages;
 import net.rywir.ravenousmaw.system.AbilityDispatcher;
@@ -23,6 +26,8 @@ public interface IMutationAbility {
 
     default void onAttack(ItemStack stack, LivingEntity target, Level level) {}
 
+    default boolean interactLivingEntity(ItemStack stack, Player player, Entity entity) { return false; }
+
     default void onCraft(ItemStack stack) {}
 
     default void onInstability(MutationHandler mutationHandler, ItemStack stack, Player player) {}
@@ -32,4 +37,6 @@ public interface IMutationAbility {
     default void decraft(ItemStack stack) {}
 
     default boolean isMutatable(ItemStack stack, Level level) { return true; }
+
+    default void stealLife(ItemStack maw, float damage, Player player) {}
 }

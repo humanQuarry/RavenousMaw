@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_minecraft:torchflower_seeds": {
+    "has_minecraft:prismarine_shard": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:torchflower_seeds"
+            "items": "minecraft:prismarine_shard"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_minecraft:torchflower_seeds"
+      "has_minecraft:prismarine_shard"
     ]
   ],
   "rewards": {

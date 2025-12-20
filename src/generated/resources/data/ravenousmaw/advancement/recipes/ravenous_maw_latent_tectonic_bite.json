@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_minecraft:sticky_piston": {
+    "has_minecraft:slime_ball": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:sticky_piston"
+            "items": "minecraft:slime_ball"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_minecraft:sticky_piston"
+      "has_minecraft:slime_ball"
     ]
   ],
   "rewards": {

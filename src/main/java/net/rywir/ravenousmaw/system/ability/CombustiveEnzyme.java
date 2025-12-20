@@ -22,6 +22,8 @@ import net.rywir.ravenousmaw.util.Configs;
 import net.rywir.ravenousmaw.util.Constants;
 
 public class CombustiveEnzyme implements IMutationAbility {
+    private static final int DURATION = 80;
+
     @Override
     public void onAttack(ItemStack stack, LivingEntity target, Level level) {
         if (level.isClientSide()) return;
@@ -71,15 +73,13 @@ public class CombustiveEnzyme implements IMutationAbility {
 
     @Override
     public void onInstability(MutationHandler mutationHandler, ItemStack stack, Player player) {
+        if (player.level().isClientSide()) return;
+
         MutationHandler handler = new MutationHandler(stack);
 
-        if (!handler.has(Mutations.COMBUSTIVE_ENZYME)) {
-            return;
-        }
+        if (!handler.has(Mutations.COMBUSTIVE_ENZYME)) return;
 
-        int durationInSeconds = 10;
-
-        player.addEffect(new MobEffectInstance(RavenousMobEffects.COMBUSTIVE, durationInSeconds * 20));
+        player.addEffect(new MobEffectInstance(RavenousMobEffects.COMBUSTIVE, DURATION));
         player.displayClientMessage(Component.translatable("instability_message.ravenousmaw.combustive_enzyme"), true);
     }
 }

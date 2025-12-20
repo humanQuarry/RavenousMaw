@@ -6,53 +6,6 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class Configs {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
-
-//    // REPAIR VALUES
-//    // LATENT
-//    public static final ModConfigSpec.IntValue LATENT_ROTTEN_FLESH = BUILDER
-//        .comment("Latent Stage - Rotten Flesh Repair Value")
-//        .defineInRange("latentFlesh", Constants.LATENT_ROTTEN_FLESH, 0, Integer.MAX_VALUE);
-//
-//    // ADVANCED
-//    public static final ModConfigSpec.IntValue ADVANCED_ROTTEN_FLESH = BUILDER
-//        .comment("Advanced Stage - Rotten Flesh Repair Value")
-//        .defineInRange("advancedFlesh", Constants.ADVANCED_ROTTEN_FLESH, 0, Integer.MAX_VALUE);
-//
-//    public static final ModConfigSpec.IntValue ADVANCED_PIGLIN_PIE = BUILDER
-//        .comment("Advanced Stage - Piglin Pie Repair Value")
-//        .defineInRange("advancedPie", Constants.ADVANCED_PIGLIN_PIE, 0, Integer.MAX_VALUE);
-//
-//    // NOBLE
-//    public static final ModConfigSpec.IntValue NOBLE_ROTTEN_FLESH = BUILDER
-//        .comment("Noble Stage - Rotten Flesh Repair Value")
-//        .defineInRange("nobleFlesh", Constants.NOBLE_ROTTEN_FLESH, 0, Integer.MAX_VALUE);
-//
-//    public static final ModConfigSpec.IntValue NOBLE_PIGLIN_PIE = BUILDER
-//        .comment("Noble Stage - Piglin Pie Repair Value")
-//        .defineInRange("noblePie", Constants.NOBLE_PIGLIN_PIE, 0, Integer.MAX_VALUE);
-//
-//    public static final ModConfigSpec.IntValue NOBLE_CHORUS_CRACKER = BUILDER
-//        .comment("Noble Stage - Chorus Cracker Repair Value")
-//        .defineInRange("nobleCracker", Constants.NOBLE_CHORUS_CRACKER, 0, Integer.MAX_VALUE);
-//
-//    // EXCELSIOR
-//    public static final ModConfigSpec.IntValue EXCELSIOR_ROTTEN_FLESH = BUILDER
-//        .comment("Excelsior Stage - Rotten Flesh Repair Value")
-//        .defineInRange("excelsiorFlesh", Constants.EXCELSIOR_ROTTEN_FLESH, 0, Integer.MAX_VALUE);
-//
-//    public static final ModConfigSpec.IntValue EXCELSIOR_PIGLIN_PIE = BUILDER
-//        .comment("Excelsior Stage - Piglin Pie Repair Value")
-//        .defineInRange("excelsiorPie", Constants.EXCELSIOR_PIGLIN_PIE, 0, Integer.MAX_VALUE);
-//
-//    public static final ModConfigSpec.IntValue EXCELSIOR_CHORUS_CRACKER = BUILDER
-//        .comment("Excelsior Stage - Chorus Cracker Repair Value")
-//        .defineInRange("excelsiorCracker", Constants.EXCELSIOR_CHORUS_CRACKER, 0, Integer.MAX_VALUE);
-//
-//    public static final ModConfigSpec.IntValue EXCELSIOR_SCULK_CRONUT = BUILDER
-//        .comment("Excelsior Stage - Sculk Cronut Repair Value")
-//        .defineInRange("excelsiorCronut", Constants.EXCELSIOR_SCULK_CRONUT, 0, Integer.MAX_VALUE);
-
-
     // COMBUSTIVE ENZYME
     public static final ModConfigSpec.DoubleValue COMBUSTIVE_ENZYME_ADVANCED_DAMAGE_BONUS = BUILDER
         .comment("Advanced Stage - Combustive Enzyme Bonus Damage Value")

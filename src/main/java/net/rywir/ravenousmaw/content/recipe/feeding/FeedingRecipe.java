@@ -52,7 +52,7 @@ public class FeedingRecipe extends CustomRecipe {
         )),
 
         Stages.EXCELSIOR, Stream.of(
-            Map.entry(RavenousItems.SCULK_CRONUT.asItem(), Constants.EXCELSIOR_SCULK_CRONUT),
+            Map.entry(RavenousItems.SCULK_CROISSANT.asItem(), Constants.EXCELSIOR_SCULK_CROISSANT),
             Map.entry(RavenousItems.CHORUS_CRACKER.asItem(), Constants.EXCELSIOR_CHORUS_CRACKER),
             Map.entry(RavenousItems.PIGLIN_PIE.asItem(), Constants.EXCELSIOR_PIGLIN_PIE),
             Map.entry(Items.ROTTEN_FLESH.asItem(), Constants.EXCELSIOR_ROTTEN_FLESH)

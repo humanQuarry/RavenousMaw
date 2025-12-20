@@ -1,0 +1,17 @@
+{
+  "name": "Piglin Pie",
+  "icon": "ravenousmaw:piglin_pie",
+  "category": "ravenousmaw:feasts",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ravenousmaw:chorus_cracker",
+      "text": "Born from the scorching bounty of the Nether, the Piglin Pie serves as the designated Feast for the Advanced Stage. To consume this meal is to invite the flame, inflicting the Combustive Effect upon the unwary soul."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "In the Mutation Matrix, it acts as a catalyst to induce specific Mutations: the Combustive Enzyme, Insatiable Voracity, and Iris Out."
+    }
+  ]
+}

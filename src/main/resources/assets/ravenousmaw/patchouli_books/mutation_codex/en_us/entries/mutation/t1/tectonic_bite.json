@@ -1,0 +1,26 @@
+{
+  "name": "Tectonic Bite",
+  "icon": "minecraft:slime_ball",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:rotten_flesh"
+      },
+      "text": "The Tectonic Bite imbues the Maw with a voracious appetite for the earth itself, allowing it to excavate vast swathes of terrain in a single bite."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:slime_ball"
+      },
+      "text": "As the beast reaches higher Stages, its jaws distend further, capable of swallowing even greater areas. The precise reach of this hunger can be tempered within the Configuration Menu."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Instability (Heaviness): Great hunger brings great weight. When the Maw is set to devour large areas, the sheer mass of the earth renders its movement sluggish, noticeably reducing digging speed."
+    }
+  ]
+}

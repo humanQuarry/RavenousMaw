@@ -5,6 +5,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -24,6 +25,8 @@ public class IrisOut implements IMutationAbility {
 
     private static final int FULL_CHARGE_TICKS = 20;
     private static final int MIN_CHARGE_TICKS = 10;
+
+    private static final int DURABILITY_COST = 10;
 
     @Override
     public InteractionResultHolder<ItemStack> use(
@@ -82,6 +85,10 @@ public class IrisOut implements IMutationAbility {
             1.0F,
             fullyCharged ? 1.2F : 1.0F
         );
+
+        if (stage != Stages.EXCELSIOR) {
+            stack.hurtAndBreak(DURABILITY_COST, player, EquipmentSlot.MAINHAND);
+        }
     }
 
     @Override

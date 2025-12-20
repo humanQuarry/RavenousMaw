@@ -1,0 +1,26 @@
+{
+  "name": "Electric Mending",
+  "icon": "minecraft:raw_copper",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:rotten_flesh"
+      },
+      "text": "Through the Electric Mending mutation, the Ravenous Maw learns to feast upon pure current rather than matter. This evolution allows the beast to siphon Forge Energy (FE), knitting its own wounds through galvanic consumption."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:raw_copper"
+      },
+      "text": "The Maw can store a reserve of up to 5,000 FE, burning through this charge to restore its durability. Furthermore, this raw static potential generates a magnetic vortex, dragging nearby items into its grasp faster with each higher Stage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Instability (Electroactivity): The current coursing through the Maw is volatile and untamed. Immersion in water invites disaster; the pent-up energy may occasionally ground itself through the wielder, inflicting a violent electrocution upon contact with the liquid."
+    }
+  ]
+}

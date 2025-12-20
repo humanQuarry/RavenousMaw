@@ -1,7 +1,10 @@
 package net.rywir.ravenousmaw.content.event;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -24,6 +27,34 @@ public class RavenousLivingDropsEvent {
 
         if (level.isClientSide()) {
             return;
+        }
+
+        if (entity instanceof Player player) {
+            List<ItemEntity> toSave = new ArrayList<>();
+
+            for (ItemEntity itemEntity : event.getDrops()) {
+                ItemStack stack = itemEntity.getItem();
+
+                boolean isMaw = stack.is(RavenousItemTagsProvider.MAW);
+                if (!isMaw) continue;
+
+                MutationHandler handler = new MutationHandler(stack);
+
+                boolean hasSymbioticAid = handler.has(Mutations.SYMBIOTIC_AID);
+                if (!hasSymbioticAid) continue;
+
+                toSave.add(itemEntity);
+            }
+
+            for (ItemEntity saved : toSave) {
+                event.getDrops().remove(saved);
+
+                Tag itemTag = saved.getItem().save(player.registryAccess());
+
+                CompoundTag persisted = player.getPersistentData().getCompound(Player.PERSISTED_NBT_TAG);
+                persisted.put("SavedMaw", itemTag);
+                player.getPersistentData().put(Player.PERSISTED_NBT_TAG, persisted);
+            }
         }
 
         ItemStack stack = event.getSource().getWeaponItem();

@@ -6,16 +6,16 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import java.util.HashMap;
+import java.util.Map;
 
 public record MutationComponent(ImmutableMap<String, ConfigurationComponent> mutmap) {
     public static final Codec<MutationComponent> CODEC;
     public static final StreamCodec<ByteBuf, MutationComponent> STREAM_CODEC;
 
-    private MutationComponent() {
-        this(ImmutableMap.of());
+    public static MutationComponent generate() {
+        Map<String, ConfigurationComponent> pseudoMutmap = new HashMap<>();
+        return new MutationComponent(ImmutableMap.copyOf(pseudoMutmap));
     }
-
-    public static MutationComponent EMPTY = new MutationComponent();
 
     static {
         CODEC = Codec.unboundedMap(Codec.STRING, ConfigurationComponent.CODEC)

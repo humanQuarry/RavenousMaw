@@ -1,0 +1,24 @@
+{
+  "name": "Ravenous Maw",
+  "icon": "ravenousmaw:ravenous_maw_latent",
+  "category": "ravenousmaw:getting_started",
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ravenousmaw:ravenous_maw_latent",
+      "text": "A cryptic entity of forgotten origin, the Ravenous Maw—or simply, the Maw—is a beast of endless hunger. It possesses a malleable form capable of twisting into new shapes, acquiring potent abilities as it mutates.)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "This eldritch creature grows in power only by devouring the essence of specific monstrosities. (Seek the Stages section for forbidden knowledge on its evolution."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A starving Maw is a dormant one. Should its durability fall critically low, the beast will cease to function. To rekindle its strength, you must offer it a Feast. Combine the Maw with an accepted Feast within any crafting grid to mend its form. Be mindful that each offering restores a different measure of vitality. Do not neglect the beast's hunger."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Maw's capacity for evolution is bound by its Stage. As the beast ascends to higher forms, its vessel expands, granting the strength to harbor a greater number of specific Mutations. Certain powers are malleable, awaiting your command to shape them. To commune with the beast and configure these malleable abilities, hold Shift + Right Click."
+    }
+  ]
+}

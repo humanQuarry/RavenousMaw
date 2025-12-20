@@ -1,6 +1,6 @@
 {
   "name": "Stages",
-  "description": "Stages or Mutational Stages allows Ravenous Maw to have better and more Mutations. Each Stage can be acquired by defeating a boss.",
+  "description": "The Mutational Stages mark the Maw's ascent into true power. Ascending to a higher Stage expands its capacity, allowing it to bind more numerous and potent Mutations, while empowering those already etched into its form. To unlock each Stage, you must claim the essence of a specific Boss.",
   "icon": "ravenousmaw:ravenous_maw_excelsior",
   "sortnum": 3
 }

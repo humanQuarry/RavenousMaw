@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-11T17:18:54.9945719	Tags for minecraft:item mod id ravenousmaw
+// 1.21.1	2025-12-20T23:02:00.4888749	Tags for minecraft:item mod id ravenousmaw
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/c/tags/item/paxel.json
 a91ea4a81a50f63e7faee31556bbb7355478e342 data/c/tags/item/tools.json
 a91ea4a81a50f63e7faee31556bbb7355478e342 data/c/tags/item/tools/melee_weapon.json
@@ -9,6 +9,6 @@ a91ea4a81a50f63e7faee31556bbb7355478e342 data/minecraft/tags/item/enchantable/mi
 a91ea4a81a50f63e7faee31556bbb7355478e342 data/minecraft/tags/item/enchantable/sharp_weapon.json
 a91ea4a81a50f63e7faee31556bbb7355478e342 data/minecraft/tags/item/enchantable/sword.json
 a91ea4a81a50f63e7faee31556bbb7355478e342 data/minecraft/tags/item/enchantable/weapon.json
-1fc60f21769d3f39991497d14b90963e50f42b69 data/ravenousmaw/tags/item/feast.json
+88c26acd122dac0b705f628a690770d3fba066f0 data/ravenousmaw/tags/item/feast.json
 a91ea4a81a50f63e7faee31556bbb7355478e342 data/ravenousmaw/tags/item/maw.json
 01c7a0094aa0ef6dba401213e1bc5f00be63578a data/ravenousmaw/tags/item/mutagen.json

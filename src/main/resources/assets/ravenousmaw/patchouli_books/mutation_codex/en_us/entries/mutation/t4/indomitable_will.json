@@ -1,0 +1,22 @@
+{
+  "name": "Indomitable Will",
+  "icon": "minecraft:dragon_breath",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 11,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:sculk_croissant"
+      },
+      "text": "Indomitable Will grants the Maw a relentless focus that defies the physical world. This mutation allows the beast to maintain its ferocity regardless of the environment."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:dragon_breath"
+      },
+      "text": "It no longer suffers the sluggishness of laboring beneath the waves or the lack of leverage while airborne. Its bite remains swift and true, unhindered by the elements."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Excelsior",
+  "icon": "ravenousmaw:ravenous_maw_excelsior",
+  "category": "ravenousmaw:stages",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:ravenous_maw_excelsior"
+      },
+      "text": "Excelsior Stage is the fourth and ultimate evolution of the Ravenous Maw—the zenith of its horrific potential. To reach this final ascension, one must descend into the deepest silences and slay the Warden."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:sculk_croissant"
+      },
+      "text": "By consuming the soul of the Deep Dark's sentinel, the Maw finally achieves its most perfect and terrifying form. This Stage's Feast is Sculk Croissant."
+    }
+  ]
+}

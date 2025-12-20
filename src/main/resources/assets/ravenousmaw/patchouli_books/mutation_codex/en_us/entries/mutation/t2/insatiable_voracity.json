@@ -1,0 +1,26 @@
+{
+  "name": "Insatiable Voracity",
+  "icon": "minecraft:enchanted_golden_apple",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:piglin_pie"
+      },
+      "text": "Insatiable Voracity grants the Maw a hunger that knows no bounds. With every life it extinguishes, the beast absorbs a fraction of its victim's power, honing its edge and increasing the damage dealt with each subsequent kill."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:enchanted_golden_apple"
+      },
+      "text": "With each ascension to a higher Stage, damage granted by the essence of the fallen ones increases."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Instability (Unsatisfiable): The beast's hunger is a maddening force. In fits of blind starvation, the Maw may lose all distinction between prey and master, unexpectedly turning back to sink its teeth into your own flesh."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Perpetual Motion",
+  "icon": "minecraft:rabbit_foot",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 12
+  ,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:sculk_croissant"
+      },
+      "text": "Perpetual Motion turns the Maw into a conduit for stolen life. Each time the beast sinks its teeth into a foe, it drains their vital essence to invigorate its host."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:rabbit_foot"
+      },
+      "text": "This stolen energy surges through the wielder, mending wounds with percentage-based healing, quickening the stride with newfound speed, and sating the host's own hunger with every strike."
+    }
+  ]
+}

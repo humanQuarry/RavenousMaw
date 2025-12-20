@@ -1,0 +1,26 @@
+{
+  "name": "Tendril Lash",
+  "icon": "minecraft:angler_pottery_sherd",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:chorus_cracker"
+      },
+      "text": "The Tendril Lash causes the Maw to sprout writhing appendages, extending your grasp beyond natural limits. This mutation immediately lengthens your reach (default +1)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:angler_pottery_sherd"
+      },
+      "text": "As the beast evolves through higher Stages, these tendrils elongate further, granting an additional block of interaction range with every ascent in power."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Instability (Trick): The Maw possesses a chaotic, almost childlike malevolence. Finding amusement in your confusion, it may occasionally twitch and swap the contents of your main hand with your off-hand, purely for the sake of a twisted jest."
+    }
+  ]
+}

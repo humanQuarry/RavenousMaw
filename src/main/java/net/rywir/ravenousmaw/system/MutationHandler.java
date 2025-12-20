@@ -8,13 +8,13 @@ import net.rywir.ravenousmaw.RavenousMaw;
 import net.rywir.ravenousmaw.content.component.MutationComponent;
 import net.rywir.ravenousmaw.registry.DataComponentTypes;
 import net.rywir.ravenousmaw.registry.Mutations;
+import net.rywir.ravenousmaw.registry.Stages;
 
 import java.util.*;
 
 public class MutationHandler {
     private final ItemStack stack;
     private ImmutableMap<String, MutationComponent.ConfigurationComponent> mutmap;
-    private static final int DEFAULT_VALUE = 1;
 
     public MutationHandler(ItemStack stack) {
         this.stack = stack;
@@ -31,13 +31,13 @@ public class MutationHandler {
     }
 
     public void add(Mutations mutation) {
-        if(has(mutation)) {
+        if (has(mutation)) {
             return;
         }
 
         Map<String, Integer> pseudoConfmap = new HashMap<>();
         mutation.parameters().forEach(parameter -> {
-            pseudoConfmap.put(parameter.key(), DEFAULT_VALUE);
+            pseudoConfmap.put(parameter.key(), parameter.getDefaultVal());
         });
 
         Map<String, MutationComponent.ConfigurationComponent> pseudoMutmap = new HashMap<>(mutmap);
@@ -48,13 +48,13 @@ public class MutationHandler {
     }
 
     public void addWithCraft(Mutations mutation) {
-        if(has(mutation)) {
+        if (has(mutation)) {
             return;
         }
 
         Map<String, Integer> pseudoConfmap = new HashMap<>();
         mutation.parameters().forEach(parameter -> {
-            pseudoConfmap.put(parameter.key(), DEFAULT_VALUE);
+            pseudoConfmap.put(parameter.key(), parameter.getDefaultVal());
         });
 
         Map<String, MutationComponent.ConfigurationComponent> pseudoMutmap = new HashMap<>(mutmap);
@@ -83,7 +83,7 @@ public class MutationHandler {
     public void configure(Mutations.Parameters parameter, int value) {
         Mutations mutation = Mutations.byParameter(parameter);
 
-        if(!has(mutation)) {
+        if (!has(mutation)) {
             return;
         }
 
@@ -98,19 +98,37 @@ public class MutationHandler {
         updateMap();
     }
 
-    public void nextConfval(Mutations.Parameters parameter, Level level) {
+    public void nextConfval(Mutations.Parameters parameter, Level level, Stages stage) {
         Mutations mutation = Mutations.byParameter(parameter);
 
-        if(!has(mutation)) {
+        if (!has(mutation)) {
             return;
         }
 
         Map<String, MutationComponent.ConfigurationComponent> pseudoMutmap = new HashMap<>(mutmap);
         Map<String, Integer> pseudoConfmap = new HashMap<>(pseudoMutmap.get(mutation.key()).confmap());
 
+        int newval;
+
+        if (parameter == Mutations.Parameters.TECTONIC_AREA) {
+            int limit = 1;
+
+            limit = switch (stage) {
+                case LATENT -> 3;
+                case ADVANCED -> 5;
+                case NOBLE -> 7;
+                case EXCELSIOR -> 9;
+            };
+
+            boolean isApplicable = parameter.next(pseudoConfmap.get(parameter.key())) <= limit;
+            newval = isApplicable ? parameter.next(pseudoConfmap.get(parameter.key())) : parameter.head();
+        } else {
+            newval = parameter.next(pseudoConfmap.get(parameter.key()));
+        }
+
         pseudoConfmap.put(
             parameter.key(),
-            parameter.next(pseudoConfmap.get(parameter.key()))
+            newval
         );
 
         pseudoMutmap.put(mutation.key(), new MutationComponent.ConfigurationComponent(ImmutableMap.copyOf(pseudoConfmap)));
@@ -121,23 +139,41 @@ public class MutationHandler {
         updateMap();
     }
 
-    public void nextConfVal(String key, Level level) {
-        nextConfval(Mutations.Parameters.byKey(key), level);
+    public void nextConfVal(String key, Level level, Stages stage) {
+        nextConfval(Mutations.Parameters.byKey(key), level, stage);
     }
 
-    public void prevConfigVal(Mutations.Parameters parameter, Level level) {
+    public void prevConfigVal(Mutations.Parameters parameter, Level level, Stages stage) {
         Mutations mutation = Mutations.byParameter(parameter);
 
-        if(!has(mutation)) {
+        if (!has(mutation)) {
             return;
         }
 
         Map<String, MutationComponent.ConfigurationComponent> pseudoMutmap = new HashMap<>(mutmap);
         Map<String, Integer> pseudoConfmap = new HashMap<>(pseudoMutmap.get(mutation.key()).confmap());
 
+        int newval;
+
+        if (parameter == Mutations.Parameters.TECTONIC_AREA) {
+            int limit = 1;
+
+            limit = switch (stage) {
+                case LATENT -> 3;
+                case ADVANCED -> 5;
+                case NOBLE -> 7;
+                case EXCELSIOR -> 9;
+            };
+
+            boolean isApplicable = parameter.prev(pseudoConfmap.get(parameter.key())) <= limit;
+            newval = isApplicable ? parameter.prev(pseudoConfmap.get(parameter.key())) : limit;
+        } else {
+            newval = parameter.prev(pseudoConfmap.get(parameter.key()));
+        }
+
         pseudoConfmap.put(
             parameter.key(),
-            parameter.prev(pseudoConfmap.get(parameter.key()))
+            newval
         );
 
         pseudoMutmap.put(mutation.key(), new MutationComponent.ConfigurationComponent(ImmutableMap.copyOf(pseudoConfmap)));
@@ -148,14 +184,14 @@ public class MutationHandler {
         updateMap();
     }
 
-    public void prevConfigVal(String key, Level level) {
-        prevConfigVal(Mutations.Parameters.byKey(key), level);
+    public void prevConfigVal(String key, Level level, Stages stage) {
+        prevConfigVal(Mutations.Parameters.byKey(key), level, stage);
     }
 
     public void resetConfigVal(Mutations.Parameters parameter, Level level) {
         Mutations mutation = Mutations.byParameter(parameter);
 
-        if(!has(mutation)) {
+        if (!has(mutation)) {
             return;
         }
 
@@ -193,7 +229,7 @@ public class MutationHandler {
     }
 
     public int getKills() {
-        if(!has(Mutations.INSATIABLE_VORACITY)) {
+        if (!has(Mutations.INSATIABLE_VORACITY)) {
             return 0;
         }
 
@@ -201,7 +237,7 @@ public class MutationHandler {
     }
 
     public void increaseKill() {
-        if(!has(Mutations.INSATIABLE_VORACITY)) {
+        if (!has(Mutations.INSATIABLE_VORACITY)) {
             return;
         }
 
@@ -230,6 +266,19 @@ public class MutationHandler {
     }
 
     public List<Mutations.Parameters> getAllParameters() {
+        Set<Mutations> muts = matchMutations();
+        List<Mutations.Parameters> parameters = new ArrayList<>();
+
+        for (var mut : muts) {
+            for (var param : mut.parameters()) {
+                parameters.add(param);
+            }
+        }
+
+        return parameters;
+    }
+
+    public List<Mutations.Parameters> getNonHiddenParameters() {
         Set<Mutations> muts = matchMutations();
         List<Mutations.Parameters> parameters = new ArrayList<>();
 

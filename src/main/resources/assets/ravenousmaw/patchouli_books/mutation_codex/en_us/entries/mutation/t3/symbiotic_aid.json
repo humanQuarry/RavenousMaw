@@ -1,0 +1,26 @@
+{
+  "name": "Symbiotic Aid",
+  "icon": "minecraft:pufferfish",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:chorus_cracker"
+      },
+      "text": "The Symbiotic Aid mutation forges a vital lifeline between wielder and weapon. When clutched in the main hand, the Maw acts as a biological filter, instantly purging harmful afflictions from your veins."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:pufferfish"
+      },
+      "text": "This bond transcends mortality itself; should you fall in battle, the Maw refuses to be parted from you, remaining safely in your inventory. Furthermore, the beast fortifies your very skin, granting increased Armor Toughness that hardens with every ascending Stage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Instability (Malediction): The Maw cannot contain the corruption indefinitely. After suppressing your ailments for a time, the burden becomes too great. In a violent purge, the beast regurgitates a weakened amalgamation of all stored afflictions back onto its master."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "Feasts",
-  "description": "Feasts can be used to regenerate the Ravenous Maw or catalyze Mutations. Each Feast has its own Stage and unique effect. You can regenerate your maw by feeding it a Feast in any crafting apparatus.",
+  "description": "The Maw hungers, and Feasts provide its sustenance. Offer a Feast to your Maw within any crafting grid to mend it. Every Feast belongs to a distinct Stage and harbors its own effect. As the Stage rises, so does the restoration it provides. Furthermore, these meals act as catalysts for Mutations.",
   "icon": "ravenousmaw:piglin_pie",
   "sortnum": 1
 }

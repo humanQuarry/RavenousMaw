@@ -81,6 +81,8 @@ public class TendrilLash implements IMutationAbility {
 
     @Override
     public void onInstability(MutationHandler mutationHandler, ItemStack stack, Player player) {
+        if (player.level().isClientSide()) return;
+
         boolean hasTendrilLash = mutationHandler.has(Mutations.TENDRIL_LASH);
 
         if (!hasTendrilLash) {

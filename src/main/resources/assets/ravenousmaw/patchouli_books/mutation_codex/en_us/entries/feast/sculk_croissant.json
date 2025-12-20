@@ -1,0 +1,17 @@
+{
+  "name": "Sculk Croissant",
+  "icon": "ravenousmaw:sculk_croissant",
+  "category": "ravenousmaw:feasts",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ravenousmaw:sculk_croissant",
+      "text": "Baked from the creeping growths of the Deep Dark, the Sculk Croissant sustains the Maw at its zenith: the Excelsior Stage. To partake of this forbidden pastry is to invite the void."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Consuming it engulfs the senses, inflicting the blinding Darkness Effect upon the eater."
+    }
+  ]
+}

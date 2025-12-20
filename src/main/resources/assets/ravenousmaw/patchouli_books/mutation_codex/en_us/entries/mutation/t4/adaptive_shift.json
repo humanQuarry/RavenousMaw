@@ -1,0 +1,26 @@
+{
+  "name": "Adaptive Shift",
+  "icon": "minecraft:nether_star",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:sculk_croissant"
+      },
+      "text": "Adaptive Shift renders the Maw a vessel of supreme versatility, granting three distinct powers: First, it allows the beast to shift at will between the precision of Silk Touch and the gluttonous harvest of Fortune III."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:nether_star"
+      },
+      "text": "Second, it permits you to calibrate digging speed without exceeding the Maw's physical limits. Lastly, the beast can be commanded to forgo material loot, devouring the essence of fallen foes to bolster its own damage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Inducing this shift requires the beast to have already mastered the limits of its current path—it will only take root once the Maw possesses the maximum potency of either Fortune or Silk Touch."
+    }
+  ]
+}

@@ -76,7 +76,7 @@ public class RavenousItemTagsProvider extends ItemTagsProvider {
             .add(Items.ROTTEN_FLESH)
             .add(RavenousItems.PIGLIN_PIE.get())
             .add(RavenousItems.CHORUS_CRACKER.get())
-            .add(RavenousItems.SCULK_CRONUT.get());
+            .add(RavenousItems.SCULK_CROISSANT.get());
 
         this.tag(ItemTags.SWORD_ENCHANTABLE)
             .add(RavenousItems.RAVENOUS_MAW_LATENT.get())

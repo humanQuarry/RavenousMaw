@@ -1,0 +1,26 @@
+{
+  "name": "Iris Out",
+  "icon": "minecraft:breeze_rod",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:piglin_pie"
+      },
+      "text": "Iris Out expels the Maw's eye as a projectile known as the Iris Bullet. When fully charged—heralded by a distinct sound—the bullet will home in on targets if active."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:breeze_rod"
+      },
+      "text": "However, the eye obeys your gaze rather than proximity. It seeks only what lies within your vision, ignoring enemies lurking behind you."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Instability (Enlightenment): To cast away one's own sight is a costly sacrifice. Firing an Iris Bullet exacts a heavy toll on durability, as the Maw consumes a massive amount of vitality to instantly regenerate the lost eye."
+    }
+  ]
+}

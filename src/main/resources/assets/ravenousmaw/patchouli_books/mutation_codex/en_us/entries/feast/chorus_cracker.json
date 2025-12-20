@@ -1,0 +1,17 @@
+{
+  "name": "Chorus Cracker",
+  "icon": "ravenousmaw:chorus_cracker",
+  "category": "ravenousmaw:feasts",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ravenousmaw:chorus_cracker",
+      "text": "Forged from the strange harvest of the End Dimension, the Chorus Cracker is the chosen Feast for the Noble Stage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Be warned: consuming this void-touched morsel severs the chains of gravity, bestowing the Levitating Effect upon the consumer."
+    }
+  ]
+}

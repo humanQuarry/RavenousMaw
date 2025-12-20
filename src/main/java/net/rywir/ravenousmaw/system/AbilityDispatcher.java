@@ -2,6 +2,7 @@ package net.rywir.ravenousmaw.system;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -34,6 +35,12 @@ public class AbilityDispatcher implements IMutationAbility {
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeCharged, MutationHandler handler, Stages stage, AbilityDispatcher dispatcher) {
         Mutations.IRIS_OUT.ability().releaseUsing(stack, level, entity, timeCharged, handler, stage, dispatcher);
+    }
+
+    @Override
+    public boolean interactLivingEntity(ItemStack stack, Player player, Entity entity) {
+        boolean result = Mutations.MENTAL_SUPREMACY.ability().interactLivingEntity(stack, player, entity);
+        return result;
     }
 
     @Override

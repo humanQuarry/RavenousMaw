@@ -64,5 +64,5 @@ public class Constants {
     public static final int EXCELSIOR_ROTTEN_FLESH = 1 * 5; // * 5 EXCELSIOR STAGE BOOST
     public static final int EXCELSIOR_PIGLIN_PIE = 10 * 5;
     public static final int EXCELSIOR_CHORUS_CRACKER = 100 * 5;
-    public static final int EXCELSIOR_SCULK_CRONUT = 1000;
+    public static final int EXCELSIOR_SCULK_CROISSANT = 1000;
 }

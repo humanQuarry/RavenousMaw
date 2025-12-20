@@ -1,0 +1,26 @@
+{
+  "name": "Mental Supremacy",
+  "icon": "minecraft:heart_of_the_sea",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:chorus_cracker"
+      },
+      "text": "Mental Supremacy elevates the Maw to a state of psychic dominance, allowing its alien consciousness to spill over and influence the minds of others."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:heart_of_the_sea"
+      },
+      "text": "By focusing its unsettling gaze upon the beasts of the world, the Maw can intimidate them into absolute submission, taming wild creatures with a single, harrowing glance."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Instability (Terror): The Maw's psychic presence is an undiscriminating force. Occasionally, even you—its master—will find yourself recoiling in primitive dread from its unsettling gaze, momentarily paralyzed by the very terror you seek to wield."
+    }
+  ]
+}

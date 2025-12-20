@@ -1,0 +1,22 @@
+{
+  "name": "Arcane Hypertrophy",
+  "icon": "minecraft:prismarine_shard",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:sculk_croissant"
+      },
+      "text": "Arcane Hypertrophy causes the Maw’s power to swell with unnatural vigor. This mutation acts as a catalyst, doubling the potency of certain mastered enchantments."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:prismarine_shard"
+      },
+      "text": "Under its influence, the bounty of Fortune and the spoils of Looting are vastly amplified, yielding a harvest far beyond natural limits."
+    }
+  ]
+}

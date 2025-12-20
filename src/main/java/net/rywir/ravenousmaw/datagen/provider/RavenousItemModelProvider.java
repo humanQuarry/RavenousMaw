@@ -18,7 +18,7 @@ public class RavenousItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(RavenousItems.PIGLIN_PIE.get());
-        basicItem(RavenousItems.SCULK_CRONUT.get());
+        basicItem(RavenousItems.SCULK_CROISSANT.get());
         basicItem(RavenousItems.CHORUS_CRACKER.get());
 
         basicItem(RavenousItems.CONTAMINATION_CORE.get());

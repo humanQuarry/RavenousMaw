@@ -1,11 +1,11 @@
 package net.rywir.ravenousmaw;
 
+import net.minecraft.client.Minecraft;
 import net.neoforged.bus.api.Event;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RenderHighlightEvent;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
@@ -15,7 +15,11 @@ import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.rywir.ravenousmaw.content.decorator.EnergyBarDecorator;
 import net.rywir.ravenousmaw.content.entity.model.IrisBulletModel;
 import net.rywir.ravenousmaw.content.entity.renderer.IrisBulletRenderer;
 import net.rywir.ravenousmaw.content.event.*;
@@ -62,6 +66,9 @@ public class RavenousMaw {
         NeoForge.EVENT_BUS.addListener(MovementInputUpdateEvent.class, RavenousMovementInputUpdateEvent::onMovementInputUpdateEvent);
         NeoForge.EVENT_BUS.addListener(RenderHighlightEvent.Block.class, RavenousRenderHighlightEvent::onRenderHighlightEvent);
         NeoForge.EVENT_BUS.addListener(RegisterCommandsEvent.class, RavenousRegisterCommandsEvent::onRegisterCommandsEvent);
+        NeoForge.EVENT_BUS.addListener(PlayerEvent.Clone.class, RavenousCloneEvent::onCloneEvent);
+        NeoForge.EVENT_BUS.addListener(LivingDamageEvent.Post.class, RavenousLivingDamageEvent::onLivingDamageEvent);
+        NeoForge.EVENT_BUS.addListener(PlayerTickEvent.Pre.class, RavenousPlayerTickEvent::onPlayerTickEvent);
 
         modEventBus.addListener(RegisterPayloadHandlersEvent.class, RavenousRegisterPayloadHandlersEvent::onRegisterPayloadHandlersEvent);
 
@@ -71,6 +78,8 @@ public class RavenousMaw {
         RavenousItems.registerFeasts(modEventBus);
         RavenousItems.registerItems(modEventBus);
         RavenousItems.registerMaws(modEventBus);
+
+        modEventBus.addListener(RegisterCapabilitiesEvent.class, RavenousRegisterCapabilitiesEvent::onRegisterCapabilitiesEvent);
 
         MenuTypes.register(modEventBus);
 
@@ -83,6 +92,8 @@ public class RavenousMaw {
 
         RavenousMobEffects.register(modEventBus);
         RavenousEntityTypes.register(modEventBus);
+
+        RavenousAttachments.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
 
@@ -111,6 +122,29 @@ public class RavenousMaw {
         @SubscribeEvent
         public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(IrisBulletModel.LAYER_LOCATION, IrisBulletModel::createBodyLayer);
+        }
+
+        @SubscribeEvent
+        public static void registerItemDecorators(RegisterItemDecorationsEvent event) {
+            event.register(
+                RavenousItems.RAVENOUS_MAW_LATENT.get(),
+                new EnergyBarDecorator()
+            );
+
+            event.register(
+                RavenousItems.RAVENOUS_MAW_ADVANCED.get(),
+                new EnergyBarDecorator()
+            );
+
+            event.register(
+                RavenousItems.RAVENOUS_MAW_NOBLE.get(),
+                new EnergyBarDecorator()
+            );
+
+            event.register(
+                RavenousItems.RAVENOUS_MAW_EXCELSIOR.get(),
+                new EnergyBarDecorator()
+            );
         }
 
         @SubscribeEvent

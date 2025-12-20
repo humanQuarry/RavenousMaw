@@ -2,15 +2,9 @@ package net.rywir.ravenousmaw.system;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemLore;
-import net.minecraft.world.item.component.Unbreakable;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.rywir.ravenousmaw.RavenousMaw;
-import net.rywir.ravenousmaw.content.item.MawItem;
-import net.rywir.ravenousmaw.registry.DataComponentTypes;
 import net.rywir.ravenousmaw.registry.Mutations;
 import net.rywir.ravenousmaw.registry.RavenousItems;
 import net.rywir.ravenousmaw.registry.Stages;

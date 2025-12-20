@@ -1,16 +1,13 @@
 package net.rywir.ravenousmaw.content.item;
 
-import com.google.common.collect.BoundType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -19,7 +16,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -35,41 +31,41 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
-import net.rywir.ravenousmaw.RavenousMaw;
+import net.rywir.ravenousmaw.content.attachment.MawTickData;
 import net.rywir.ravenousmaw.content.component.MutationComponent;
 import net.rywir.ravenousmaw.content.gui.menu.ConfigurationMenu;
-import net.rywir.ravenousmaw.datagen.provider.RavenousItemTagsProvider;
 import net.rywir.ravenousmaw.registry.DataComponentTypes;
 import net.rywir.ravenousmaw.registry.Mutations;
-import net.rywir.ravenousmaw.registry.RavenousItems;
+import net.rywir.ravenousmaw.registry.RavenousAttachments;
 import net.rywir.ravenousmaw.registry.Stages;
 import net.rywir.ravenousmaw.datagen.provider.RavenousBlockTagsProvider;
 import net.rywir.ravenousmaw.system.AbilityDispatcher;
 import net.rywir.ravenousmaw.system.MutationHandler;
 import net.rywir.ravenousmaw.system.StageHandler;
 import net.rywir.ravenousmaw.util.Constants;
-import net.rywir.ravenousmaw.util.HelperData;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Supplier;
 
 public class MawItem extends Item {
-    public final Stages stage;
-    private static final int USE_DURATION = 72000;
+    private static final int USE_DURATION               = 72000;
+    private static final int FULL_CHARGE_TICKS          = 20;
+    private static final int ENERGY_COST_PER_DURABIITY  = 50;
+    private static final int MAX_TICKS                  = 20 * 60 * 9;
+    private static final int DIALOGUE_FREQUENCY         = 20 * 60 * 3;
+
     private static final Component DURABILITY_WARNING = Component.translatable("ravenousmaw.maw_threshold_message");
-    private static final int FULL_CHARGE_TICKS = 20;
+
+    private static Stages stage;
 
     public MawItem(Stages stage) {
         super(createProperties(stage));
         this.stage = stage;
-    }
-
-    @Override
-    public String toString() {
-        return "ravenous_maw_" + this.stage.name();
     }
 
     @Override
@@ -117,7 +113,20 @@ public class MawItem extends Item {
         MutationHandler handler = new MutationHandler(stack);
         List<String> displayNames = handler.getDisplayNames();
 
+        boolean hasElectricMending = handler.has(Mutations.ELECTRIC_MENDING);
+
+        if (hasElectricMending) {
+            String energyString = Component.translatable("maw.ravenousmaw.energy_string").getString();
+
+            var energy = stack.getCapability(Capabilities.EnergyStorage.ITEM);
+
+            Component tooltip = Component.literal(energyString + ": " + energy.getEnergyStored() + "/" + energy.getMaxEnergyStored());
+            tooltipComponents.add(tooltip);
+        }
+
         if (Screen.hasShiftDown()) {
+            String mutationString = Component.translatable("maw.ravenousmaw.mutation_string").getString();
+            tooltipComponents.add(Component.literal(mutationString + ":").withStyle(ChatFormatting.YELLOW));
             displayNames.forEach(name -> tooltipComponents.add(Component.literal("・" + name).withStyle(ChatFormatting.GRAY))
             );
         } else {
@@ -164,6 +173,8 @@ public class MawItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
+
+        if (!canSurvive(stack, level, player)) return InteractionResultHolder.fail(stack);
 
         boolean isClientSide = level.isClientSide();
 
@@ -220,61 +231,102 @@ public class MawItem extends Item {
 
     @Override
     public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
-        return canSurviveUsage(player.getItemInHand(InteractionHand.MAIN_HAND), level, player, () -> super.canAttackBlock(state, level, pos, player), false);
-    }
+        ItemStack stack = player.getMainHandItem();
 
-    private int tickCounter = 0;
-    private final int MAX_COUNT = 20040; // 17 min.
-    private final int DIALOGUE_FREQUENCY = 9600;
+        if (!canSurvive(stack, level, player)) return false;
+
+        return true;
+    }
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        if (!(entity instanceof ServerPlayer player)) {
-            return;
+        if (!(entity instanceof ServerPlayer player) || level.isClientSide()) return;
+
+        MawTickData tickData = player.getData(RavenousAttachments.MAW_TICK_DATA);
+        tickData.incrementTicks();
+        int ticks = tickData.getTickCounter();
+
+        MutationHandler mutationHandler = new MutationHandler(stack);
+        StageHandler stageHandler = new StageHandler(stack);
+
+        Stages stage = stageHandler.getStage();
+
+        if (ticks % 10 == 0) {
+            mend(stack, mutationHandler);
         }
 
-        tickCounter = tickCounter + 1;
-
-        if (tickCounter % DIALOGUE_FREQUENCY == 0) {
-            StageHandler handler = new StageHandler(stack);
-            Stages stage = handler.getStage();
-
-            String dialogue = generateDialogue(stage);
-            player.displayClientMessage(Component.literal(dialogue), true);
+        if (ticks % DIALOGUE_FREQUENCY == 0 && ticks != 0) {
+            talk(stack, player, stage);
         }
 
-        if (tickCounter >= MAX_COUNT) {
-            StageHandler stageHandler = new StageHandler(stack);
-            Stages stage = stageHandler.getStage();
-
-            if (stage == Stages.EXCELSIOR) {
-                return;
-            }
-
-            boolean isMaw = player.getMainHandItem().is(RavenousItemTagsProvider.MAW);
-
-            if (!isMaw) {
-                return;
-            }
-
-            MutationHandler handler = new MutationHandler(stack);
-            List<Mutations> muts = new ArrayList<>(handler.matchMutations());
-
-            if (muts.isEmpty()) {
-                tickCounter = 0;
-                return;
-            }
-
-            Random random = new Random();
-            int index = random.nextInt(muts.size());
-
-            muts.get(index).ability().onInstability(handler, stack, player);
-            tickCounter = 0;
+        if (ticks >= MAX_TICKS) {
+            destabilize(stack, player, stage, mutationHandler);
+            tickData.resetTicks();
         }
+    }
+
+    private void destabilize(ItemStack stack, Player player, Stages stage, MutationHandler handler) {
+        if (stage == Stages.EXCELSIOR) return;
+
+        List<Mutations> muts = new ArrayList<>(handler.matchMutations());
+
+        if (muts.isEmpty()) return;
+
+        Random random = new Random();
+        int index = random.nextInt(muts.size());
+
+        muts.get(index).ability().onInstability(handler, stack, player);
+    }
+
+    private void talk(ItemStack stack, @NotNull Player player, Stages stage) {
+        String dialogue = generateDialogue(stage);
+        player.displayClientMessage(Component.literal(dialogue), true);
+    }
+
+    private void mend(@NotNull ItemStack stack, MutationHandler handler) {
+        if (!stack.isDamaged()) return;
+
+        boolean hasUndyingFlesh = handler.has(Mutations.UNDYING_FLESH);
+        if (hasUndyingFlesh) return;
+
+        boolean hasElectricMending = handler.has(Mutations.ELECTRIC_MENDING);
+        if (!hasElectricMending) return;
+
+        boolean hasEnoughEnergy = stack.getCapability(Capabilities.EnergyStorage.ITEM).getEnergyStored() >= ENERGY_COST_PER_DURABIITY;
+
+        if (!hasEnoughEnergy) return;
+
+        stack.getCapability(Capabilities.EnergyStorage.ITEM).extractEnergy(ENERGY_COST_PER_DURABIITY, false);
+        stack.setDamageValue(stack.getDamageValue() - 1);
+    }
+
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity entity, InteractionHand hand) {
+        AbilityDispatcher dispatcher = new AbilityDispatcher();
+        boolean result = dispatcher.interactLivingEntity(stack, player, entity);
+
+        if (result) {
+            return InteractionResult.PASS;
+        } else {
+            return super.interactLivingEntity(stack, player, entity, hand);
+        }
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        if (slotChanged) return true;
+
+        if (oldStack.getItem() != newStack.getItem()) return true;
+
+        return false;
     }
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
+        ItemStack stack = context.getItemInHand();
+
+        if (!canSurvive(stack, context.getLevel(), context.getPlayer())) return InteractionResult.FAIL;
+
         if (playerHasShieldUseIntent(context)) {
             return InteractionResult.PASS;
         }
@@ -317,7 +369,6 @@ public class MawItem extends Item {
             );
         }
     }
-
 
     @Override
     public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
@@ -512,7 +563,7 @@ public class MawItem extends Item {
             .durability(stage.getUses())
             .attributes(createAttributes(stage))
             .component(DataComponents.TOOL, createToolComponent(stage))
-            .component(DataComponentTypes.MUTATION_COMPONENT_TYPE, MutationComponent.EMPTY);
+            .component(DataComponentTypes.MUTATION_COMPONENT_TYPE, MutationComponent.generate());
     }
 
     private static Tool createToolComponent(Stages stage) {
@@ -534,12 +585,12 @@ public class MawItem extends Item {
             .build();
     }
 
-    public <T> T canSurviveUsage(ItemStack stack, Level level, @Nullable LivingEntity entity, Supplier<T> action, T failureResult) {
+    public boolean canSurvive(ItemStack stack, Level level, LivingEntity entity) {
         int remainingDurability = stack.getMaxDamage() - stack.getDamageValue();
-        int threshold = (int)(stack.getMaxDamage() * Constants.MAW_DURABILITY_PERCENTAGE_THRESHOLD);
+        int threshold = (int) (stack.getMaxDamage() * Constants.MAW_DURABILITY_PERCENTAGE_THRESHOLD);
 
         if (remainingDurability > threshold) {
-            return action.get();
+            return true;
         }
 
         if (level.isClientSide && entity instanceof Player player) {
@@ -547,10 +598,10 @@ public class MawItem extends Item {
             player.displayClientMessage(DURABILITY_WARNING, true);
         }
 
-        return failureResult;
+        return false;
     }
 
-    public Stages getStage() {
+    public static Stages getStage() {
         return stage;
     }
 }

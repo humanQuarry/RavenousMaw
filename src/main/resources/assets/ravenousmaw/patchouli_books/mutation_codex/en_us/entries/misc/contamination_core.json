@@ -1,0 +1,16 @@
+{
+  "name": "Contamination Core",
+  "icon": "ravenousmaw:contamination_core",
+  "category": "ravenousmaw:getting_started",
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ravenousmaw:contamination_core",
+      "text": "The Contamination Core pulsates with corrupted energy, serving as the beating heart of these forbidden arts."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "As a nexus of instability, it is the essential foundation required to forge the hunger of the Ravenous Maw and construct the complex geometry of the Mutation Matrix."
+    }
+  ]
+}

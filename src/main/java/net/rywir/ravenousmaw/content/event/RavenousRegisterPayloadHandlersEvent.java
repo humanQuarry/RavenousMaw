@@ -3,10 +3,10 @@ package net.rywir.ravenousmaw.content.event;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-import net.rywir.ravenousmaw.content.handler.ConfigurationPayloadHandler;
-import net.rywir.ravenousmaw.content.handler.ConfigurationSyncPayloadHandler;
-import net.rywir.ravenousmaw.content.payload.ConfigurationPayload;
-import net.rywir.ravenousmaw.content.payload.ConfigurationSyncPayload;
+import net.rywir.ravenousmaw.content.packet.handler.ConfigurationPayloadHandler;
+import net.rywir.ravenousmaw.content.packet.handler.ConfigurationSyncPayloadHandler;
+import net.rywir.ravenousmaw.content.packet.payload.ConfigurationPayload;
+import net.rywir.ravenousmaw.content.packet.payload.ConfigurationSyncPayload;
 
 public class RavenousRegisterPayloadHandlersEvent {
     @SubscribeEvent

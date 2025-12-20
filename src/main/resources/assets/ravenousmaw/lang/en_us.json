@@ -8,16 +8,19 @@
   "mutation_matrix_menu_title": "Mutation Matrix",
 
   "mutation.ravenousmaw.tectonic_bite": "Tectonic Bite",
+  "mutation.ravenousmaw.electric_mending": "Electric Mending",
   "mutation.ravenousmaw.combustive_enzyme": "Combustive Enzyme",
   "mutation.ravenousmaw.insatiable_voracity": "Insatiable Voracity",
   "mutation.ravenousmaw.iris_out": "Iris Out",
   "mutation.ravenousmaw.undying_flesh": "Undying Flesh",
   "mutation.ravenousmaw.symbiotic_aid": "Symbiotic Aid",
   "mutation.ravenousmaw.tendril_lash": "Tendril Lash",
+  "mutation.ravenousmaw.mental_supremacy": "Mental Supremacy",
   "mutation.ravenousmaw.resonant_rending": "Resonant Rending",
   "mutation.ravenousmaw.arcane_hypertrophy": "Arcane Hypertrophy",
   "mutation.ravenousmaw.indomitable_will": "Indomitable Will",
   "mutation.ravenousmaw.adaptive_shift": "Adaptive Shift",
+  "mutation.ravenousmaw.perpetual_motion": "Perpetual Motion",
 
   "parameter.ravenousmaw.tectonic_area": "Tectonic Area",
   "parameter.ravenousmaw.symbiotic_immunity": "Symbiotic Immunity",
@@ -28,6 +31,9 @@
   "parameter.ravenousmaw.living_projectile": "Living Projectile",
   "parameter.ravenousmaw.reckless_devourer": "Reckless Devourer",
   "parameter.ravenousmaw.grim_tracer": "Grim Tracer",
+  "parameter.ravenousmaw.magnetic_range": "Magnetic Range",
+  "parameter.ravenousmaw.magnetic_field": "Magnetic Field",
+  "parameter.ravenousmaw.dreadful_glance": "Dreadful Glance",
 
   "description.ravenousmaw.tectonic_area": "Modify digging area size\n§aTectonic Bite",
   "description.ravenousmaw.symbiotic_immunity": "Toggle harmful effect removal\n§aSymbiotic Aid",
@@ -37,22 +43,25 @@
   "description.ravenousmaw.living_projectile": "Toggle ranged weapon mode\n§aIris Out",
   "description.ravenousmaw.reckless_devourer": "Increase damage by sacrificing loots\n§aAdaptive Shift",
   "description.ravenousmaw.grim_tracer": "Toggle homing projectiles when fully charged\n§aIris Out",
+  "description.ravenousmaw.magnetic_range": "Modify magnet range\n§aElectric Mending",
+  "description.ravenousmaw.magnetic_field": "Toggle item magnet\n§aElectric Mending",
+  "description.ravenousmaw.dreadful_glance": "Toggle taming animals by right clicking\n§aMental Supremacy",
 
   "creativetab.ravenousmaw.ravenous_tab": "Ravenous Maw",
 
   "item.ravenousmaw.piglin_pie": "Piglin Pie",
   "item.ravenousmaw.chorus_cracker": "Chorus Cracker",
-  "item.ravenousmaw.sculk_cronut": "Sculk Croissant",
+  "item.ravenousmaw.sculk_croissant": "Sculk Croissant",
 
   "item.ravenousmaw.contamination_core": "Contamination Core",
   "item.ravenousmaw.mutation_codex": "Mutation Codex",
 
   "ravenousmaw.maw_threshold_message": "The Ravenous Maw refuses to work in order to survive! (Feed the beast!)",
 
-  "item.ravenousmaw.ravenous_maw_latent": "Ravenous Maw: Latent",
-  "item.ravenousmaw.ravenous_maw_advanced": "Ravenous Maw: Advanced",
-  "item.ravenousmaw.ravenous_maw_noble": "Ravenous Maw: Noble",
-  "item.ravenousmaw.ravenous_maw_excelsior": "Ravenous Maw: Excelsior",
+  "item.ravenousmaw.ravenous_maw_latent": "Latent Maw",
+  "item.ravenousmaw.ravenous_maw_advanced": "Advanced Maw",
+  "item.ravenousmaw.ravenous_maw_noble": "Noble Maw",
+  "item.ravenousmaw.ravenous_maw_excelsior": "Excelsior Maw",
 
   "effect.ravenousmaw.combustive": "Combustive",
   "effect.ravenousmaw.symbiotic_infection": "Symbiotic Infection",
@@ -62,6 +71,8 @@
   "instability_message.ravenousmaw.symbiotic_aid": "The Ravenous Maw pukes negative effects!",
   "instability_message.ravenousmaw.insatiable_voracity": "The Ravenous Maw releases harmful effects!",
   "instability_message.ravenousmaw.combustive_enzyme": "The Ravenous Maw drooled some combustive saliva on you!",
+  "instability_message.ravenousmaw.electric_mending": "The Ravenous Maw shocked you!",
+  "instability_message.ravenousmaw.mental_supremacy": "You are scared of the Ravenous Maw!",
 
   "configuration_menu_string.ravenousmaw.loot": "Loot",
   "configuration_menu_string.ravenousmaw.silk_touch": "Silk Touch",
@@ -72,9 +83,10 @@
 
   "tooltip.ravenousmaw.shift": "Press Shift to see upgrades",
 
-  "maw.ravenousmaw.stage_string": "Stage",
-  "maw.ravenousmaw.mutation_string": "Mutations",
+  "maw.ravenousmaw.stage_string": "§pStage",
+  "maw.ravenousmaw.mutation_string": "§aMutations",
   "maw.ravenousmaw.configuration_string": "Configuration",
+  "maw.ravenousmaw.energy_string": "Energy",
 
   "stage.ravenousmaw.latent": "Latent",
   "stage.ravenousmaw.advanced": "Advanced",
@@ -84,9 +96,12 @@
   "jei.ravenousmaw.feeding": "Maw Feeding",
 
   "warning.ravenousmaw.no_maw": "The item in main hand is not a maw!",
+  "warning.ravenousmaw.not_enough_energy": "Not enough energy!",
 
-  "dialogue.ravenousmaw.latent": "RmVlZCBtZSBtb3J0YWwh",
-  "dialogue.ravenousmaw.advanced": "From a builder, teach bWF3 speak-hows!",
-  "dialogue.ravenousmaw.noble": "I have finally become able to communicate with you.",
-  "dialogue.ravenousmaw.excelsior": "When will you gonna feed me?"
+  "dialogue.ravenousmaw.latent": "Ravenous Maw: RmVlZCBtZSBtb3J0YWwh",
+  "dialogue.ravenousmaw.advanced": "Ravenous Maw: From a builder, teach bWF3 speak-hows!",
+  "dialogue.ravenousmaw.noble": "Ravenous Maw: I have finally become able to communicate with you.",
+  "dialogue.ravenousmaw.excelsior": "Ravenous Maw: When will you gonna feed me?",
+
+  "mob.ravenousmaw.minion": "Symbiotic Minion"
 }

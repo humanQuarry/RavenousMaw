@@ -1,0 +1,16 @@
+{
+  "name": "Mutation Matrix",
+  "icon": "ravenousmaw:mutation_matrix",
+  "category": "ravenousmaw:getting_started",
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ravenousmaw:mutation_matrix",
+      "text": "The Mutation Matrix acts as the crucible for the Ravenous Maw's evolution. Through this device, you may bind new Mutations to the vessel using specific Mutagens and Feasts."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Align the ritual components carefully: place the Ravenous Maw in the left slot, the Feast in the center, and the Mutagen in the right. Once the triumvirate is set, behold the transmutation."
+    }
+  ]
+}

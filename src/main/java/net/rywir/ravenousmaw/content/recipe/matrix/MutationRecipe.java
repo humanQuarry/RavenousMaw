@@ -11,7 +11,7 @@ import net.rywir.ravenousmaw.content.item.MawItem;
 import net.rywir.ravenousmaw.registry.Mutations;
 import net.rywir.ravenousmaw.registry.RavenousRecipes;
 import net.rywir.ravenousmaw.system.MutationHandler;
-import net.rywir.ravenousmaw.system.interfaces.IMutationAbility;
+import net.rywir.ravenousmaw.util.HelperData;
 
 public class MutationRecipe implements Recipe<MutationRecipeInput> {
     private final Ingredient base;

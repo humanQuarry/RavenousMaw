@@ -25,7 +25,7 @@ public class RavenousCreativeModeTabs {
 
         output.accept(RavenousItems.PIGLIN_PIE);
         output.accept(RavenousItems.CHORUS_CRACKER);
-        output.accept(RavenousItems.SCULK_CRONUT);
+        output.accept(RavenousItems.SCULK_CROISSANT);
 
         output.accept(RavenousItems.CONTAMINATION_CORE);
         output.accept(RavenousItems.MUTATION_CODEX);

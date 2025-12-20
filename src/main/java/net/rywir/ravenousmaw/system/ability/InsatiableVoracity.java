@@ -50,22 +50,17 @@ public class InsatiableVoracity implements IMutationAbility {
 
     @Override
     public void onInstability(MutationHandler handler, ItemStack stack, Player player) {
+        if (player.level().isClientSide()) return;
+
         boolean hasInsatiableVoracity = handler.has(Mutations.INSATIABLE_VORACITY);
 
         if (!hasInsatiableVoracity) {
             return;
         }
 
-        Holder<DamageType> mobAttackHolder = player.level().registryAccess()
-            .registryOrThrow(Registries.DAMAGE_TYPE)
-            .getHolderOrThrow(DamageTypes.MOB_ATTACK);
+        Holder<DamageType> type = player.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MOB_ATTACK);
 
-        DamageSource source = new DamageSource(
-            mobAttackHolder,
-            player,
-            player,
-            player.position()
-        );
+        DamageSource source = new DamageSource(type, player, player, player.position());
 
         player.hurt(source, 4.0F);
         player.displayClientMessage(Component.translatable("instability_message.ravenousmaw.insatiable_voracity"), true);

@@ -32,8 +32,6 @@ public class AdaptiveShift implements IMutationAbility {
         }
     }
 
-
-
     @Override
     public void onUpdate(ItemStack stack, Level level) {
         MutationHandler mutationHandler = new MutationHandler(stack);

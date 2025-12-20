@@ -2,9 +2,10 @@
   "name": "Mutation Codex",
   "item": "patchouli:guide_book",
   "model": "ravenousmaw:mutation_codex",
-  "landing_text": "Welcome to Ravenous Maw. This mod allows you to witness the birth of a monster that gradually mutates and feasts on everything. Whether you can control it or not depends on you.",
+  "landing_text": "The Ravenous Maw invites you to witness the genesis of an apex predator. You must decide: will you guide its evolution, or will you be the first course in its banquet?",
   "i18n": true,
   "creative_tab": "",
+  "show_progress": false,
   "version": 1,
   "use_resource_pack": true
 }

@@ -1,0 +1,22 @@
+{
+  "name": "Resonant Rending",
+  "icon": "minecraft:ghast_tear",
+  "category": "ravenousmaw:mutations",
+  "sortnum": 13,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecraft:ghast_tear"
+      },
+      "text": "Resonant Rending enables the Maw to vibrate at a frequency that shatters the very essence of life. Each strike no longer merely tears at flesh, but cleaves through a fraction of the victim's total vitality, dealing damage scaled to their maximum health."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "ravenousmaw:sculk_croissant"
+      },
+      "text": "No matter how titanic the foe, their strength offers no protection against such a surgical strike."
+    }
+  ]
+}
