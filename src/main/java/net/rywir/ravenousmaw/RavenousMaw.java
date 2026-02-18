@@ -63,8 +63,6 @@ public class RavenousMaw {
         NeoForge.EVENT_BUS.addListener(LivingDropsEvent.class, RavenousLivingDropsEvent::onLivingDropsEvent);
         NeoForge.EVENT_BUS.addListener(BlockDropsEvent.class, RavenousBlockDropsEvent::onBlockDropsEvent);
         NeoForge.EVENT_BUS.addListener(BlockEvent.BreakEvent.class, RavenousBreakEvent::onBreakEvent);
-        NeoForge.EVENT_BUS.addListener(MovementInputUpdateEvent.class, RavenousMovementInputUpdateEvent::onMovementInputUpdateEvent);
-        NeoForge.EVENT_BUS.addListener(RenderHighlightEvent.Block.class, RavenousRenderHighlightEvent::onRenderHighlightEvent);
         NeoForge.EVENT_BUS.addListener(RegisterCommandsEvent.class, RavenousRegisterCommandsEvent::onRegisterCommandsEvent);
         NeoForge.EVENT_BUS.addListener(PlayerEvent.Clone.class, RavenousCloneEvent::onCloneEvent);
         NeoForge.EVENT_BUS.addListener(LivingDamageEvent.Post.class, RavenousLivingDamageEvent::onLivingDamageEvent);
@@ -111,7 +109,10 @@ public class RavenousMaw {
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {}
+        public static void onClientSetup(FMLClientSetupEvent event) {
+			NeoForge.EVENT_BUS.addListener(MovementInputUpdateEvent.class, RavenousMovementInputUpdateEvent::onMovementInputUpdateEvent);
+			NeoForge.EVENT_BUS.addListener(RenderHighlightEvent.Block.class, RavenousRenderHighlightEvent::onRenderHighlightEvent);
+		}
 
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
